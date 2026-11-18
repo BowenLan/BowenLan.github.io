@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lan Bowen | Portfolio</title>
+<style>
+    :root {
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --accent: #38bdf8;
+        --glass-bg: rgba(15, 23, 42, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --hover-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: var(--text-main);
+        line-height: 1.6;
+        /* 请确保同目录下有 bg.jpg */
+        background: url('./bg.png') no-repeat center center fixed;
+        background-size: cover;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    /* 宽屏布局：增加最大宽度 */
+    .container {
+        width: 100%;
+        max-width: 1400px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 56px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    .header {
+        text-align: center;
+        margin-bottom: 56px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .avatar {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        font-weight: 700;
+        margin: 0 auto 20px;
+        box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        margin-bottom: 8px;
+        letter-spacing: 2px;
+    }
+
+    .subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+        letter-spacing: 0.5px;
+    }
+
+    .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        font-size: 1rem;
+    }
+
+    .contact-info a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .contact-info a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 24px;
+        padding: 8px 24px;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* Sections */
+    .section {
+        margin-bottom: 56px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 600;
+    }
+
+    .section-title::before {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 30px;
+        background: var(--accent);
+        border-radius: 4px;
+    }
+
+    /* Awards */
+    .award-list {
+        list-style: none;
+    }
+
+    .award-list li {
+        background: var(--hover-bg);
+        padding: 24px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        border-left: 4px solid var(--accent);
+        transition: transform 0.2s;
+    }
+
+    .award-list li:hover {
+        transform: translateX(8px);
+    }
+
+    .award-title {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .award-desc {
+        font-size: 1rem;
+        color: var(--text-muted);
+    }
+
+    /* Sky Map Image */
+    .skymap-container {
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 32px;
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .skymap-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Accordion (Details/Summary) */
+    details {
+        background: var(--hover-bg);
+        border-radius: 12px;
+        margin-bottom: 12px;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    details[open] {
+        border-color: var(--glass-border);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    summary {
+        padding: 18px 24px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1.1rem;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        outline: none;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary::after {
+        content: '+';
+        font-size: 1.6rem;
+        color: var(--accent);
+        line-height: 1;
+        transition: transform 0.3s;
+    }
+
+    details[open] summary::after {
+        content: '−';
+    }
+
+    /* 宽屏数据展示：使用 Grid 实现多列 */
+    .details-content {
+        padding: 0 24px 24px 24px;
+        font-size: 1rem;
+        color: var(--text-muted);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 4px;
+        padding-top: 20px;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .details-content p {
+        margin-bottom: 12px;
+    }
+
+    .details-content strong {
+        color: var(--text-main);
+        font-weight: 500;
+        display: inline-block;
+        min-width: 120px;
+    }
+
+    /* 数据网格布局（宽屏多列） */
+    .data-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
+    }
+
+    .ast-reporters {
+        grid-column: 1 / -1; /* 占据整行 */
+        margin-top: 12px;
+        padding-top: 16px;
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+    
+    .ast-reporter-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 8px;
+        margin-top: 10px;
+        font-family: monospace;
+        font-size: 0.95rem;
+        color: #cbd5e1;
+    }
+
+    /* Scrollbar for long lists */
+    .scrollable-list {
+        max-height: 800px; /* 宽屏下允许更高 */
+        overflow-y: auto;
+        padding-right: 16px;
+    }
+
+    .scrollable-list::-webkit-scrollbar {
+        width: 8px;
+    }
+    .scrollable-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .scrollable-list::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+    }
+    .scrollable-list::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    footer {
+        text-align: center;
+        padding-top: 40px;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--glass-border);
+    }
+
+    @media (max-width: 768px) {
+        .container { padding: 24px; }
+        .contact-info { flex-direction: column; gap: 12px; }
+        .data-grid { grid-template-columns: 1fr; }
+        h1 { font-size: 2rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="avatar">LB</div>
+        <h1>Lan Bowen</h1>
+        <p class="subtitle">Northwestern Polytechnical University | Undergraduate of 2023</p>
+        <p class="subtitle" style="margin-top: -8px; font-size: 0.95rem;">Major: Automation | Political Status: CPC Member</p>
+        
+        <div class="contact-info">
+            <a href="mailto:b.lan@mail.nwpu.edu.cn">b.lan@mail.nwpu.edu.cn</a>
+            <!-- Gmail 已注释隐藏 -->
+            <!-- <a href="mailto:b.lan.6834.id@gmail.com">b.lan.6834.id@gmail.com</a> -->
+        </div>
+
+        <div class="status-badge">🚧 Under Construction - Coming Soon</div>
+    </header>
+
+    <!-- Honors & Awards -->
+    <section class="section">
+        <h2 class="section-title">Honors & Awards</h2>
+        <ul class="award-list">
+            <li>
+                <div class="award-title">2025 International Space Science and Payload Competition (Global Finals) | Bronze Award</div>
+                <div class="award-desc">Team Leader (No Gold Award team that year)</div>
+            </li>
+            <li>
+                <div class="award-title">3rd World University CubeSat Challenge (China Finals) | Excellence Award</div>
+                <div class="award-desc">Team Leader</div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Variable Stars -->
+    <section class="section">
+        <h2 class="section-title">Discoveries of Variable Stars</h2>
+        
+        <div class="skymap-container">
+            <!-- 请确保同目录下有 map.jpg -->
+            <img src="./map.png" alt="All-Sky Map of Discovered Variables">
+        </div>
+
+        <div class="scrollable-list" id="variable-stars-container">
+            <!-- JS dynamically populated -->
+        </div>
+    </section>
+
+    <!-- Asteroids -->
+    <section class="section">
+        <h2 class="section-title">Asteroids</h2>
+        <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 24px;">
+            Contributions to the discovery and identification of minor planets.
+        </p>
+        <div class="scrollable-list" id="asteroids-container">
+            <!-- JS dynamically populated -->
+        </div>
+    </section>
+
+    <footer>
+        © <span id="year"></span> Lan Bowen. All Rights Reserved.
+    </footer>
+</div>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 1. Variable Stars Data (Complete from SearchResults.csv)
+    const variableStarsData = [
+        { name: "BLVS J185944.79-072435.4", auid: "000-BPY-338", coords: "18 59 44.79 -07 24 35.4", const: "Aql", type: "EB", period: "0.53417", mag: "16.57 - 16.96 r", revised: "2024-08-22" },
+        { name: "BLVS J185956.12+125835.0", auid: "000-BPY-173", coords: "18 59 56.12 +12 58 35.0", const: "Aql", type: "EA", period: "0.49725", mag: "18.98 - 19.64 r", revised: "2024-08-15" },
+        { name: "BLVS J185956.53+122425.7", auid: "000-BPY-199", coords: "18 59 56.53 +12 24 25.7", const: "Aql", type: "EW", period: "0.36563", mag: "18.90 - 19.07 r", revised: "2024-08-16" },
+        { name: "BLVS J190007.45+112558.7", auid: "000-BPY-177", coords: "19 00 07.45 +11 25 58.7", const: "Aql", type: "EB", period: "0.6910", mag: "17.75 - 17.95 r", revised: "2024-08-15" },
+        { name: "BLVS J190011.00+132534.8", auid: "000-BPY-180", coords: "19 00 11.00 +13 25 34.8", const: "Aql", type: "EB", period: "1.0722", mag: "16.30 - 16.38 r", revised: "2024-08-16" },
+        { name: "BLVS J190016.80+120545.3", auid: "000-BPY-178", coords: "19 00 16.80 +12 05 45.3", const: "Aql", type: "ELL", period: "0.48681", mag: "16.21 - 16.27 r", revised: "2024-08-15" },
+        { name: "BLVS J190248.10-034052.7", auid: "000-BQG-419", coords: "19 02 48.10 -03 40 52.7", const: "Aql", type: "EA", period: "10.0934", mag: "17.56 - 18.93 r", revised: "2025-08-26" },
+        { name: "BLVS J191134.00+145549.4", auid: "000-BPW-719", coords: "19 11 34.00 +14 55 49.4", const: "Aql", type: "ROT", period: "5.4945", mag: "18.97 - 19.33 r", revised: "2024-06-05" },
+        { name: "BLVS J191134.16+112125.5", auid: "000-BPW-735", coords: "19 11 34.16 +11 21 25.5", const: "Aql", type: "EA", period: "1.09696", mag: "17.32 - 17.40 r", revised: "2024-06-07" },
+        { name: "BLVS J191138.54+125516.9", auid: "000-BPW-802", coords: "19 11 38.54 +12 55 16.9", const: "Aql", type: "EB", period: "0.66536", mag: "17.68 - 17.92 r", revised: "2024-06-12" },
+        { name: "BLVS J192002.11-065138.4", auid: "000-BPZ-834", coords: "19 20 02.11 -06 51 38.4", const: "Aql", type: "HADS", period: "0.0695079", mag: "18.45 - 18.61 r", revised: "2024-11-12" },
+        { name: "BLVS J192040.55-080448.6", auid: "000-BQG-793", coords: "19 20 40.55 -08 04 48.6", const: "Aql", type: "SXPHE", period: "0.0688081", mag: "18.62 - 19.15 r", revised: "2025-09-20" },
+        { name: "BLVS J192956.40+112632.0", auid: "000-BPW-710", coords: "19 29 56.40 +11 26 32.0", const: "Aql", type: "BY", period: "2.6782", mag: "16.90 - 17.14 r", revised: "2024-06-04" },
+        { name: "BLXC J191140.23+141046.5", auid: "000-BPW-828", coords: "19 11 40.23 +14 10 46.5", const: "Aql", type: "EW", period: "0.49389", mag: "19.5 - 19.8 r", revised: "2024-06-13" },
+        { name: "BLXC J191327.27+010900.4", auid: "000-BQH-370", coords: "19 13 27.27 +01 09 00.4", const: "Aql", type: "EA", period: "2.98750", mag: "16.36 - 18.02 r", revised: "2025-10-14" },
+        { name: "BLVS J145632.35+510254.1", auid: "000-BPW-615", coords: "14 56 32.35 +51 02 54.1", const: "Boo", type: "BY:", period: "0.9646", mag: "20.5 - 21.0 r", revised: "2024-05-25" },
+        { name: "BLVS J231332.84+562305.3", auid: "000-BPY-447", coords: "23 13 32.84 +56 23 05.3", const: "Cas", type: "EA", period: "2.30836", mag: "17.46 - 17.73 r", revised: "2024-08-27" },
+        { name: "BLVS J215914.22+592725.0", auid: "000-BQF-990", coords: "21 59 14.22 +59 27 25.0", const: "Cep", type: "EA", period: "3.38452", mag: "16.67 - 17.03 r", revised: "2025-07-26" },
+        { name: "BLVS J220344.60+592252.1", auid: "000-BQG-418", coords: "22 03 44.60 +59 22 52.1", const: "Cep", type: "EA", period: "1.70128", mag: "17.64 - 18.14 r", revised: "2025-08-26" },
+        { name: "BLVS J223219.86+584012.2", auid: "000-BPW-677", coords: "22 32 19.86 +58 40 12.2", const: "Cep", type: "ELL", period: "0.54244", mag: "17.77 - 17.87 r", revised: "2024-05-31" },
+        { name: "BLVS J225043.87+612354.4", auid: "000-BPZ-207", coords: "22 50 43.87 +61 23 54.4", const: "Cep", type: "VAR", period: "--", mag: "16.03 - 16.57 r", revised: "2024-09-19" },
+        { name: "BLVS J231450.28+670230.8", auid: "000-BPY-444", coords: "23 14 50.28 +67 02 30.8", const: "Cep", type: "EA", period: "5.1174", mag: "17.27 - 17.64 r", revised: "2024-08-26" },
+        { name: "BLVS J232142.79+674713.8", auid: "000-BPY-612", coords: "23 21 42.79 +67 47 13.8", const: "Cep", type: "BY", period: "4.159", mag: "14.77 - 14.98 r", revised: "2024-08-30" },
+        { name: "BLXC J215422.29+635408.9", auid: "000-BPW-331", coords: "21 54 22.29 +63 54 08.9", const: "Cep", type: "EA", period: "7.581", mag: "16.28 - 16.46 r", revised: "2024-04-25" },
+        { name: "BLVS J121829.06-181941.3", auid: "000-BQG-792", coords: "12 18 29.06 -18 19 41.3", const: "Crv", type: "SXPHE", period: "0.0575811", mag: "18.42 - 18.90 r", revised: "2025-09-20" },
+        { name: "BLVS J113741.36-081354.8", auid: "000-BQG-726", coords: "11 37 41.36 -08 13 54.8", const: "Crt", type: "SXPHE", period: "0.0609818", mag: "17.88 - 18.43 r", revised: "2025-09-16" },
+        { name: "BLVS J193919.29+275108.6", auid: "000-BQF-964", coords: "19 39 19.29 +27 51 08.6", const: "Cyg", type: "EA/RS", period: "15.353", mag: "17.42 - 17.87 r", revised: "2025-07-23" },
+        { name: "BLVS J195837.22+301512.9", auid: "000-BQF-151", coords: "19 58 37.22 +30 15 12.9", const: "Cyg", type: "GCAS", period: "--", mag: "14.76 - 15.14 r", revised: "2025-05-23" },
+        { name: "BLVS J200258.24+364614.8", auid: "000-BPW-529", coords: "20 02 58.24 +36 46 14.8", const: "Cyg", type: "BY", period: "9.41", mag: "18.25 - 18.72 r", revised: "2024-05-17" },
+        { name: "BLVS J200258.31+323908.9", auid: "000-BPW-549", coords: "20 02 58.31 +32 39 08.9", const: "Cyg", type: "RS", period: "0.964599", mag: "19.15 - 19.76 r", revised: "2024-05-20" },
+        { name: "BLVS J202241.60+424155.2", auid: "000-BPW-667", coords: "20 22 41.60 +42 41 55.2", const: "Cyg", type: "EA", period: "3.7350", mag: "18.04 - 18.22 r", revised: "2024-05-29" },
+        { name: "BLVS J192004.06+595412.6", auid: "000-BQB-172", coords: "19 20 04.06 +59 54 12.6", const: "Dra", type: "BY:", period: "--", mag: "17.48 - 17.68 r", revised: "2024-11-28" },
+        { name: "BLVS J194423.80+730857.5", auid: "000-BPY-918", coords: "19 44 23.80 +73 08 57.5", const: "Dra", type: "EA", period: "5.0495", mag: "12.56 - 12.69 r", revised: "2024-09-05" },
+        { name: "BLVS J044050.81-064556.1", auid: "000-BPW-595", coords: "04 40 50.81 -06 45 56.1", const: "Eri", type: "BY", period: "3.278", mag: "17.45 - 17.70 r", revised: "2024-05-22" },
+        { name: "BLVS J074815.55+264511.4", auid: "000-BQL-588", coords: "07 48 15.55 +26 45 11.4", const: "Gem", type: "BY+UV", period: "3.098", mag: "13.9 - 15.90 r", revised: "2026-05-22" },
+        { name: "BLVS J174532.78+462849.5", auid: "000-BQD-985", coords: "17 45 32.78 +46 28 49.5", const: "Her", type: "EA", period: "1.33754", mag: "19.7 - 20.8 g", revised: "2025-05-14" },
+        { name: "BLVS J174601.58+441143.9", auid: "000-BQD-967", coords: "17 46 01.58 +44 11 43.9", const: "Her", type: "EA", period: "1.33565", mag: "18.68 - 19.35 r", revised: "2025-05-13" },
+        { name: "BLVS J182703.25+203125.2", auid: "000-BPZ-839", coords: "18 27 03.25 +20 31 25.2", const: "Her", type: "BY+UV", period: "0.57484", mag: "14.2 - 17.44 r", revised: "2024-11-13" },
+        { name: "BLVS J183729.05+163252.3", auid: "000-BPX-174", coords: "18 37 29.05 +16 32 52.3", const: "Her", type: "EA", period: "2.4945", mag: "15.30 - 15.54 r", revised: "2024-07-05" },
+        { name: "ZTF18abxcbwg", auid: "000-BQD-540", coords: "18 51 18.62 +12 29 39.9", const: "Her", type: "UGSS", period: "--", mag: "18.0 - 19.7 g", revised: "2025-04-12" },
+        { name: "BLVS J222424.08+515032.1", auid: "000-BPW-524", coords: "22 24 24.08 +51 50 32.1", const: "Lac", type: "BY", period: "0.1966", mag: "18.13 - 18.40 r", revised: "2024-05-16" },
+        { name: "BLVS J182951.66+414301.7", auid: "000-BPY-308", coords: "18 29 51.66 +41 43 01.7", const: "Lyr", type: "BY", period: "1.688", mag: "17.06 - 17.24 r", revised: "2024-08-20" },
+        { name: "BLVS J183727.37+391542.2", auid: "000-BPZ-140", coords: "18 37 27.37 +39 15 42.2", const: "Lyr", type: "EA", period: "2.01142", mag: "18.51 - 19.17 r", revised: "2024-09-11" },
+        { name: "BLVS J183755.03+451752.8", auid: "000-BQB-960", coords: "18 37 55.03 +45 17 52.8", const: "Lyr", type: "ACV:", period: "127", mag: "16.85 - 16.91 r", revised: "2025-01-01" },
+        { name: "BLVS J183800.70+375352.1", auid: "000-BPY-365", coords: "18 38 00.70 +37 53 52.1", const: "Lyr", type: "EA", period: "0.95718", mag: "17.57 - 18.08 r", revised: "2024-08-22" },
+        { name: "BLVS J184620.21+334845.6", auid: "000-BQM-234", coords: "18 46 20.21 +33 48 45.6", const: "Lyr", type: "BY+UV", period: "1.6428", mag: "17.3 - 19.4 g", revised: "2026-06-29" },
+        { name: "BLVS J185943.72+424044.6", auid: "000-BPY-091", coords: "18 59 43.72 +42 40 44.6", const: "Lyr", type: "BY+UV", period: "0.97385", mag: "15.2 - 16.50 r", revised: "2024-08-12" },
+        { name: "BLVS J190248.28+362839.2", auid: "000-BQL-536", coords: "19 02 48.28 +36 28 39.2", const: "Lyr", type: "BY+UV", period: "4.018", mag: "15.1 - 17.10 g", revised: "2026-05-20" },
+        { name: "BLVS J165118.19-202322.0", auid: "000-BQH-642", coords: "16 51 18.19 -20 23 22.0", const: "Oph", type: "SXPHE", period: "0.0617462", mag: "17.86 - 18.34 r", revised: "2025-10-28" },
+        { name: "BLVS J170324.47-132200.9", auid: "000-BQL-806", coords: "17 03 24.47 -13 22 00.9", const: "Oph", type: "SXPHE", period: "0.0619859", mag: "19.0 - 19.45 g", revised: "2026-05-29" },
+        { name: "BLVS J183852.38+072258.6", auid: "000-BQF-938", coords: "18 38 52.38 +07 22 58.6", const: "Oph", type: "EA", period: "0.86314", mag: "17.66 - 18.80 r", revised: "2025-07-22" },
+        { name: "BLVS J183905.66+075436.5", auid: "000-BQF-005", coords: "18 39 05.66 +07 54 36.5", const: "Oph", type: "EA", period: "1.95897", mag: "16.01 - 16.65 r", revised: "2025-05-16" },
+        { name: "BLXC J165042.66-192502.5", auid: "000-BQG-423", coords: "16 50 42.66 -19 25 02.5", const: "Oph", type: "SXPHE", period: "0.0877409", mag: "17.98 - 18.44 r", revised: "2025-08-27" },
+        { name: "BLVS J061325.64-030239.2", auid: "000-BQL-804", coords: "06 13 25.64 -03 02 39.2", const: "Ori", type: "AM:", period: "0.160912", mag: "17.2 - 18.0 r", revised: "2026-05-29" },
+        { name: "BLVS J225154.34+330045.6", auid: "000-BPZ-596", coords: "22 51 54.34 +33 00 45.6", const: "Peg", type: "BY", period: "4.3196", mag: "16.78 - 17.00 r", revised: "2024-10-29" },
+        { name: "BLVS J013005.41+234734.1", auid: "000-BQL-773", coords: "01 30 05.41 +23 47 34.1", const: "Psc", type: "SXPHE", period: "0.0676261", mag: "17.88 - 18.53 g", revised: "2026-05-27" },
+        { name: "BLXC J074930.05-202513.9", auid: "000-BQJ-715", coords: "07 49 30.05 -20 25 13.9", const: "Pup", type: "R", period: "0.117215", mag: "17.39 - 17.78 r", revised: "2026-01-08" },
+        { name: "BLXC J191139.69+174730.5", auid: "000-BPW-827", coords: "19 11 39.69 +17 47 30.5", const: "Sge", type: "ELL:", period: "3.4518", mag: "16.48 - 16.52 r", revised: "2024-06-13" },
+        { name: "BLVS J182823.89-103607.9", auid: "000-BPZ-449", coords: "18 28 23.89 -10 36 07.9", const: "Sct", type: "HADS:", period: "0.190248", mag: "16.42 - 16.64 r", revised: "2024-10-11" },
+        { name: "BLVS J182831.36-061001.4", auid: "000-BPZ-597", coords: "18 28 31.36 -06 10 01.4", const: "Sct", type: "DSCT", period: "0.112401", mag: "16.78 - 16.89 r", revised: "2024-10-29" },
+        { name: "BLVS J183435.54-040001.2", auid: "000-BPZ-192", coords: "18 34 35.54 -04 00 01.2", const: "Sct", type: "EB:", period: "27.72", mag: "17.16 - 17.37 r", revised: "2024-09-16" },
+        { name: "BLVS J183716.12-121204.6", auid: "000-BPY-945", coords: "18 37 16.12 -12 12 04.6", const: "Sct", type: "EB", period: "1.27572", mag: "18.82 - 19.20 r", revised: "2024-09-06" },
+        { name: "BLVS J183718.62-061238.2", auid: "000-BPY-916", coords: "18 37 18.62 -06 12 38.2", const: "Sct", type: "EA", period: "2.3608", mag: "17.24 - 17.49 r", revised: "2024-09-05" },
+        { name: "BLVS J183813.19-111119.6", auid: "000-BPY-169", coords: "18 38 13.19 -11 11 19.6", const: "Sct", type: "EW", period: "0.51522", mag: "18.91 - 19.17 r", revised: "2024-08-15" },
+        { name: "BLVS J183846.10-044351.7", auid: "000-BQB-696", coords: "18 38 46.10 -04 43 51.7", const: "Sct", type: "RRC", period: "0.37889", mag: "16.10 - 16.33 r", revised: "2024-12-19" },
+        { name: "BLVS J184152.65-084659.1", auid: "000-BQB-151", coords: "18 41 52.65 -08 46 59.1", const: "Sct", type: "BCEP", period: "0.121828", mag: "15.75 - 15.85 r", revised: "2024-11-27" },
+        { name: "BLVS J184201.88-060226.4", auid: "000-BQB-258", coords: "18 42 01.88 -06 02 26.4", const: "Sct", type: "UXOR", period: "--", mag: "17.1 - 18.7 g", revised: "2024-12-03" },
+        { name: "BLVS J184314.55-042106.5", auid: "000-BQB-358", coords: "18 43 14.55 -04 21 06.5", const: "Sct", type: "ACV:", period: "5.8098", mag: "16.15 - 16.24 r", revised: "2024-12-06" },
+        { name: "BLVS J184825.67-111608.0", auid: "000-BQD-953", coords: "18 48 25.67 -11 16 08.0", const: "Sct", type: "EW", period: "0.259536", mag: "18.1 - 19.4 r", revised: "2025-05-13" },
+        { name: "BLVS J185805.45-103745.3", auid: "000-BQL-805", coords: "18 58 05.45 -10 37 45.3", const: "Sct", type: "SXPHE", period: "0.07841468", mag: "18.8 - 19.7 g", revised: "2026-05-29" },
+        { name: "BLXC J183150.98-062735.9", auid: "000-BPX-849", coords: "18 31 50.98 -06 27 35.9", const: "Sct", type: "EB", period: "1.34780", mag: "17.41 - 17.76 r", revised: "2024-08-02" },
+        { name: "BLXC J183959.22-055530.5", auid: "000-BQJ-714", coords: "18 39 59.22 -05 55 30.5", const: "Sct", type: "M", period: "431", mag: "17.6 - 19.8: r", revised: "2026-01-08" },
+        { name: "BLVS J181340.45-080657.7", auid: "000-BQC-732", coords: "18 13 40.45 -08 06 57.7", const: "Ser", type: "SR", period: "241", mag: "15.2 - 16.7 r", revised: "2025-02-25" },
+        { name: "BLVS J182035.85-042611.9", auid: "000-BQG-417", coords: "18 20 35.85 -04 26 11.9", const: "Ser", type: "ACV", period: "3.829", mag: "15.57 - 15.76 r", revised: "2025-08-26" },
+        { name: "BLVS J183056.37+015738.9", auid: "000-BPZ-599", coords: "18 30 56.37 +01 57 38.9", const: "Ser", type: "BY", period: "40.098", mag: "15.55 - 15.92 r", revised: "2024-10-30" },
+        { name: "BLVS J183438.36+052357.0", auid: "000-BPZ-191", coords: "18 34 38.36 +05 23 57.0", const: "Ser", type: "EW", period: "0.77333", mag: "16.93 - 17.17 r", revised: "2024-09-16" },
+        { name: "BLVS J183449.54+052258.4", auid: "000-BPZ-165", coords: "18 34 49.54 +05 22 58.4", const: "Ser", type: "EW", period: "0.31218", mag: "19.21 - 19.56 r", revised: "2024-09-12" },
+        { name: "BLVS J183506.18+023025.1", auid: "000-BPZ-197", coords: "18 35 06.18 +02 30 25.1", const: "Ser", type: "UV", period: "--", mag: "14.8 - 16.5 r", revised: "2024-09-19" },
+        { name: "BLVS J183716.96-032837.9", auid: "000-BPY-944", coords: "18 37 16.96 -03 28 37.9", const: "Ser", type: "EW", period: "0.34102", mag: "18.52 - 18.97 r", revised: "2024-09-06" },
+        { name: "BLVS J183816.27-030144.7", auid: "000-BPY-309", coords: "18 38 16.27 -03 01 44.7", const: "Ser", type: "EA", period: "2.22618", mag: "17.12 - 17.62 r", revised: "2024-08-20" },
+        { name: "BLVS J184114.77+054531.0", auid: "000-BQD-799", coords: "18 41 14.77 +05 45 31.0", const: "Ser", type: "YSO", period: "--", mag: "18.5 - 20.8 g", revised: "2025-05-06" },
+        { name: "ZTF18abudxvo", auid: "000-BQD-523", coords: "19 39 06.41 +24 51 31.7", const: "Vul", type: "UG", period: "--", mag: "16.9 - 22: g", revised: "2025-04-11" }
+    ];
+
+    const vsContainer = document.getElementById('variable-stars-container');
+    variableStarsData.forEach(star => {
+        const details = document.createElement('details');
+        details.innerHTML = `
+            <summary>${star.name} (${star.const})</summary>
+            <div class="details-content">
+                <div class="data-grid">
+                    <p><strong>AUID:</strong> ${star.auid}</p>
+                    <p><strong>Coordinates:</strong> ${star.coords}</p>
+                    <p><strong>Constellation:</strong> ${star.const}</p>
+                    <p><strong>Type:</strong> ${star.type}</p>
+                    <p><strong>Period:</strong> ${star.period}</p>
+                    <p><strong>Magnitude:</strong> ${star.mag}</p>
+                    <p><strong>Revised:</strong> ${star.revised}</p>
+                </div>
+            </div>
+        `;
+        vsContainer.appendChild(details);
+    });
+
+    // 2. Asteroids Data (Complete from txt, without initial numbers)
+    const asteroidsData = [
+        {
+            title: "2015 FU480",
+            class: "Hilda",
+            opp: "1 opposition",
+            reporters: ["yakuba: H375138", "b.lan: H378404", "nasiar99: H378867, H379188"],
+            params: "H=17.6mag, a=4.0au, e=0.08, i=0.7deg, uncertainty=8"
+        },
+        {
+            title: "2019 TD105",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["このしろ: H216593", "b.lan: H301777, H301788", "jim: H313675", "pallasneko: H372586"],
+            params: "H=18.7mag, a=3.0au, e=0.09, i=13.5deg, uncertainty=9"
+        },
+        {
+            title: "2015 FL487",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["b.lan: H375812", "ほたる: H377399, H390829, H390918"],
+            params: "H=18.3mag, a=3.1au, e=0.16, i=11.5deg, uncertainty=7"
+        },
+        {
+            title: "2015 FW489",
+            class: "Jupiter Trojan",
+            opp: "1 opposition",
+            reporters: ["b.lan: H375810, H378091", "sasaki: H392865", "ossan: H393908"],
+            params: "H=16.1mag, a=5.2au, e=0.03, i=1.6deg, uncertainty=6"
+        },
+        {
+            title: "2015 FJ514",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["b.lan: H377953", "sasaki: H382461", "johnson-cousins_v-bandやねんタイガース: H437109"],
+            params: "H=17.9mag, a=3.5au, e=0.08, i=5.1deg, uncertainty=9"
+        },
+        {
+            title: "2015 OO194",
+            class: "Unclassified",
+            opp: "5 oppositions",
+            reporters: ["sasaki: H221843", "maria w: H404680", "b.lan: H406823", "nasiar99: H408572"],
+            params: "H=18.2mag, a=3.1au, e=0.19, i=22.5deg, uncertainty=0"
+        },
+        {
+            title: "2015 NM54",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["b.lan: H380358", "りくは: H391904", "zorome: H452430"],
+            params: "H=19.1mag, a=3.1au, e=0.17, i=6.0deg, uncertainty=8"
+        },
+        {
+            title: "2014 WK619",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["b.lan: H420301", "zorome: H424216, H424223, H424670"],
+            params: "H=19.0mag, a=2.6au, e=0.13, i=13.3deg, uncertainty=9"
+        },
+        {
+            title: "2014 WO619",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["heron: H416098", "b.lan: H423856", "zorome: H425058, H425132"],
+            params: "H=19.3mag, a=2.9au, e=0.14, i=14.2deg, uncertainty=9"
+        },
+        {
+            title: "2015 FD570",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["ほたる: H377776", "b.lan: H378403", "sasaki: H382396"],
+            params: "H=19.6mag, a=2.6au, e=0.18, i=7.3deg, uncertainty=8"
+        },
+        {
+            title: "2015 OZ205",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["b.lan: H381980", "aika: H403738", "zorome: H451398"],
+            params: "H=20.3mag, a=2.3au, e=0.15, i=6.0deg, uncertainty=9"
+        },
+        {
+            title: "2014 WU623",
+            class: "Hungaria",
+            opp: "1 opposition",
+            reporters: ["b.lan: H423857, H423875", "zorome: H427878"],
+            params: "H=20.3mag, a=1.9au, e=0.06, i=24.0deg, uncertainty=9"
+        },
+        {
+            title: "2014 WX623",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["b.lan: H420285", "yakuba: H428480", "ナカシ: H432509"],
+            params: "H=19.8mag, a=2.7au, e=0.08, i=12.5deg, uncertainty=8"
+        },
+        {
+            title: "2014 WZ623",
+            class: "Unclassified",
+            opp: "1 opposition",
+            reporters: ["fufufufutasub: H393633", "b.lan: H420259", "mutabilitie: H435487"],
+            params: "H=18.8mag, a=3.0au, e=0.09, i=12.9deg, uncertainty=8"
+        }
+    ];
+
+    const astContainer = document.getElementById('asteroids-container');
+    asteroidsData.forEach(ast => {
+        const details = document.createElement('details');
+        
+        // 用网格布局展示 reporters
+        const reportersHtml = ast.reporters.map(r => `<div>• ${r}</div>`).join('');
+        
+        details.innerHTML = `
+            <summary>${ast.title}</summary>
+            <div class="details-content">
+                <div class="data-grid">
+                    <p><strong>Classification:</strong> ${ast.class}</p>
+                    <p><strong>Oppositions:</strong> ${ast.opp}</p>
+                    <p style="grid-column: 1 / -1;"><strong>Parameters:</strong> ${ast.params}</p>
+                </div>
+                <div class="ast-reporters">
+                    <strong>Reporters:</strong>
+                    <div class="ast-reporter-list">
+                        ${reportersHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+        astContainer.appendChild(details);
+    });
+</script>
+
+</body>
+</html>
